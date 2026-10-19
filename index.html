@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>César Santana | Business card</title>
+    <!-- FontAwesome para ícones das redes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+            --card-bg: rgba(255, 255, 255, 0.45);
+            --card-border: rgba(255, 255, 255, 0.6);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --link-bg: rgba(255, 255, 255, 0.6);
+            --link-hover: rgba(255, 255, 255, 0.85);
+            --link-border: rgba(255, 255, 255, 0.8);
+            --shadow: 0 8px 32px 0 rgba(14, 165, 233, 0.15);
+            --avatar-border: #38bdf8;
+            --pix-box-bg: rgba(255, 255, 255, 0.7);
+            --pix-item-bg: rgba(255, 255, 255, 0.85);
+            --icon-color: #0284c7;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #082f49 0%, #0c4a6e 50%, #0369a1 100%);
+            --card-bg: rgba(15, 23, 42, 0.55);
+            --card-border: rgba(56, 189, 248, 0.2);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --link-bg: rgba(30, 41, 59, 0.6);
+            --link-hover: rgba(51, 65, 85, 0.8);
+            --link-border: rgba(56, 189, 248, 0.2);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --avatar-border: #0ea5e9;
+            --pix-box-bg: rgba(15, 23, 42, 0.85);
+            --pix-item-bg: rgba(30, 41, 59, 0.7);
+            --icon-color: #38bdf8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Animações */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatAvatar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        /* Botão de Tema */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            box-shadow: var(--shadow);
+            font-size: 1.1rem;
+            animation: fadeInDown 0.6s ease 0.2s both;
+            transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Cartão Glassmorphism */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        }
+
+        /* Foto de Perfil */
+        .avatar-container {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+            animation: floatAvatar 4s ease-in-out infinite;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--avatar-border);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Informações Pessoais */
+        .name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            animation: fadeInDown 0.6s ease 0.3s both;
+        }
+
+        .role {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.4;
+            animation: fadeInDown 0.6s ease 0.4s both;
+        }
+
+        /* Links / Botões */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            background: var(--link-bg);
+            border: 1px solid var(--link-border);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 14px 20px;
+            border-radius: 14px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            width: 100%;
+            animation: fadeInDown 0.6s ease 0.5s both;
+        }
+
+        .link-item i {
+            font-size: 1.2rem;
+            margin-right: 14px;
+            width: 24px;
+            text-align: center;
+            color: var(--icon-color);
+            transition: transform 0.3s ease;
+        }
+
+        .link-item:hover i:not(.arrow) {
+            transform: scale(1.2);
+        }
+
+        .custom-icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 14px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .link-item:hover .custom-icon {
+            transform: scale(1.2);
+        }
+
+        .link-item:hover {
+            background: var(--link-hover);
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.25);
+            border-color: var(--avatar-border);
+        }
+
+        .link-item .label {
+            flex: 1;
+            text-align: left;
+        }
+
+        .link-item .arrow {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            margin-right: 0;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .link-item.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Container de Meus Projetos */
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            animation: fadeInDown 0.6s ease 0.65s both;
+        }
+
+        .projects-box {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--pix-box-bg);
+            border: 1px dashed var(--avatar-border);
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 8px;
+            animation: fadeInDown 0.4s ease forwards;
+        }
+
+        .projects-box.show {
+            display: flex !important;
+        }
+
+        /* Container do PIX */
+        .pix-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            animation: fadeInDown 0.6s ease 0.7s both;
+        }
+
+        .pix-box {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--pix-box-bg);
+            border: 1px dashed var(--avatar-border);
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 8px;
+            animation: fadeInDown 0.4s ease forwards;
+        }
+
+        .pix-box.show {
+            display: flex !important;
+        }
+
+        .pix-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--pix-item-bg);
+            border: 1px solid var(--link-border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            gap: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pix-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .pix-bank-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .bank-icon {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            flex-shrink: 0;
+            border-radius: 6px;
+        }
+
+        .pix-details {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .pix-bank-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-copy {
+            background: #0284c7;
+            color: #fff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .btn-copy:hover {
+            background: #0369a1;
+            transform: scale(1.05);
+        }
+
+        .btn-copy.copied {
+            background: #10b981;
+            animation: pulseGlow 0.6s ease;
+        }
+
+        /* Rodapé */
+        .footer {
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            animation: fadeInDown 0.6s ease 0.8s both;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 25px 18px;
+            }
+            .name {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botão de Alternância de Tema -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="container">
+        <div class="card">
+            <!-- Foto de Perfil -->
+            <div class="avatar-container">
+                <img src="images/profile.png" alt="César Santana" class="avatar">
+            </div>
+
+            <!-- Dados -->
+            <h1 class="name">César Santana</h1>
+            <p class="role">Servidor público / Psicólogo</p>
+
+            <!-- Links -->
+            <div class="links-list">
+                <a href="https://wa.me/558388954524" target="_blank" class="link-item">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span class="label">Contato / WhatsApp</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="mailto:cesarsantana.psc@gmail.com" class="link-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span class="label">E-mail</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="#" target="_blank" class="link-item">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span class="label">Instagram</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="https://github.com/cesarsant85/" target="_blank" class="link-item">
+                    <i class="fa-brands fa-github"></i>
+                    <span class="label">GitHub</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1f0coCikoSMsY8zljzeOSw06XUVwroXHd/view?usp=drive_link" target="_blank" class="link-item">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="label">Livro "Poesias" de Osvaldo Pereira</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+
+                <!-- Bloco Expansível: Meus Projetos -->
+                <div class="projects-container">
+                    <button type="button" class="link-item" id="projectsBtn">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span class="label">Meus Projetos</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+
+                    <div class="projects-box" id="projectsBox">
+                        
+                        <!-- Projeto 1 - InfoCRAS -->
+                        <div class="pix-card">
+                            <div class="pix-bank-info">
+                                <i class="fa-solid fa-code bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">InfoCRAS</span>
+                                </div>
+                            </div>
+                            <a href="https://cesarsant85.github.io/infocras/" target="_blank" class="btn-copy">Acessar</a>
+                        </div>
+
+                        <!-- Projeto 2 - Flow -->
+                        <div class="pix-card">
+                            <div class="pix-bank-info">
+                                <i class="fa-solid fa-code bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">Flow - Mapas mentais</span>
+                                </div>
+                            </div>
+                            <a href="https://cesarsant85.github.io/flow-mental-maps/" target="_blank" class="btn-copy">Acessar</a>
+                        </div>
+						
+						<!-- Projeto 3 - Flow minimal -->
+                        <div class="pix-card">
+                            <div class="pix-bank-info">
+                                <i class="fa-solid fa-code bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">Flow Minimal</span>
+                                </div>
+                            </div>
+                            <a href="https://cesarsant85.github.io/flow-minimal" target="_blank" class="btn-copy">Acessar</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PIX Expansível com Ícones de Bancos da pasta images/ -->
+                <div class="pix-container">
+                    <button type="button" class="link-item" id="pixBtn">
+                        <img src="images/pix.png" alt="Pix" class="custom-icon">
+                        <span class="label">PIX</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+
+                    <div class="pix-box" id="pixBox">
+                        
+                        <!-- Opção 1: Caixa -->
+                        <div class="pix-card">
+                            <div class="pix-bank-info">
+                                <img src="images/caixa.png" alt="Caixa" class="bank-icon">
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">Caixa</span>
+                                </div>
+                            </div>
+                            <!-- Substitua 'SUA_CHAVE_CAIXA_AQUI' pela sua chave real -->
+                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_CAIXA_AQUI', this)">Copiar</button>
+                        </div>
+
+                        <!-- Opção 2: Banco do Brasil -->
+                        <div class="pix-card">
+                            <div class="pix-bank-info">
+                                <img src="images/bb.png" alt="Banco do Brasil" class="bank-icon">
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">Banco do Brasil</span>
+                                </div>
+                            </div>
+                            <!-- Substitua 'SUA_CHAVE_BB_AQUI' pela sua chave real -->
+                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_BB_AQUI', this)">Copiar</button>
+                        </div>
+
+                        <!-- Opção 3: BTG -->
+                        <div class="pix-card">
+                            <div class="pix-bank-info">
+                                <img src="images/btg.png" alt="BTG" class="bank-icon">
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">BTG</span>
+                                </div>
+                            </div>
+                            <!-- Substitua 'SUA_CHAVE_BTG_AQUI' pela sua chave real -->
+                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_BTG_AQUI', this)">Copiar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+               Desenvolvido por CS Solutions &copy; 2026
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tema Claro/Escuro (Inicia em modo escuro por padrão)
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // Toggle para Abrir/Fechar a caixa de Meus Projetos
+        const projectsBtn = document.getElementById('projectsBtn');
+        const projectsBox = document.getElementById('projectsBox');
+
+        projectsBtn.addEventListener('click', function() {
+            projectsBtn.classList.toggle('open');
+            projectsBox.classList.toggle('show');
+        });
+
+        // Toggle para Abrir/Fechar a caixa do PIX
+        const pixBtn = document.getElementById('pixBtn');
+        const pixBox = document.getElementById('pixBox');
+
+        pixBtn.addEventListener('click', function() {
+            pixBtn.classList.toggle('open');
+            pixBox.classList.toggle('show');
+        });
+
+        // Copiar Chave PIX
+        function copyKey(keyText, button) {
+            navigator.clipboard.writeText(keyText).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copiado!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
