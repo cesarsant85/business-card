@@ -54,7 +54,6 @@
         body {
             background: var(--bg-gradient);
             min-height: 100vh;
-            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -230,38 +229,17 @@
             transform: rotate(180deg);
         }
 
-        /* Container de Meus Projetos */
-        .projects-container {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            animation: fadeInDown 0.6s ease 0.65s both;
-        }
-
-        .projects-box {
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            background: var(--pix-box-bg);
-            border: 1px dashed var(--avatar-border);
-            border-radius: 16px;
-            padding: 14px;
-            margin-top: 8px;
-            animation: fadeInDown 0.4s ease forwards;
-        }
-
-        .projects-box.show {
-            display: flex !important;
-        }
-
-        /* Container do PIX */
+        /* Containers Expansíveis */
+        .contact-container,
+        .projects-container,
         .pix-container {
             display: flex;
             flex-direction: column;
             width: 100%;
-            animation: fadeInDown 0.6s ease 0.7s both;
         }
 
+        .contact-box,
+        .projects-box,
         .pix-box {
             display: none;
             flex-direction: column;
@@ -274,6 +252,8 @@
             animation: fadeInDown 0.4s ease forwards;
         }
 
+        .contact-box.show,
+        .projects-box.show,
         .pix-box.show {
             display: flex !important;
         }
@@ -359,29 +339,9 @@
             animation: fadeInDown 0.6s ease 0.8s both;
         }
 
-        /* Responsividade para Tela Cheia no Mobile */
         @media (max-width: 480px) {
-            body {
-                padding: 0;
-                align-items: stretch;
-            }
-            .container {
-                max-width: 100%;
-                width: 100vw;
-                min-height: 100vh;
-                min-height: 100dvh;
-                display: flex;
-                flex-direction: column;
-            }
             .card {
-                flex: 1;
-                border-radius: 0;
-                border: none;
-                padding: 30px 20px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                box-shadow: none;
+                padding: 25px 18px;
             }
             .name {
                 font-size: 1.4rem;
@@ -404,11 +364,42 @@
 
             <!-- Links -->
             <div class="links-list">
-                <a href="https://wa.me/558388954524" target="_blank" class="link-item">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span class="label">Contato / WhatsApp</span>
-                    <i class="fa-solid fa-chevron-right arrow"></i>
-                </a>
+                
+                <!-- Bloco Expansível: Contato / WhatsApp -->
+                <div class="contact-container">
+                    <button type="button" class="link-item" id="contactBtn">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span class="label">Contato</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+
+                    <div class="contact-box" id="contactBox">
+                        <!-- Opção 1: Mensagem de WhatsApp -->
+                        
+						<!-- Opção 2: Ligação Telefônica -->
+                        <div class="pix-card">
+                            <div class="pix-bank-info">
+                                <i class="fa-solid fa-phone bank-icon" style="font-size: 1.1rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">Telefone</span>
+                                </div>
+                            </div>
+                            <a href="tel:83988954524" class="btn-copy">Ligar</a>
+                        </div>
+						
+						<!-- Opção 1: Mensagem de WhatsApp -->
+						<div class="pix-card">
+                            <div class="pix-bank-info">
+                                <i class="fa-brands fa-whatsapp bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: #25d366;"></i>
+                                <div class="pix-details">
+                                    <span class="pix-bank-name">WhatsApp</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/558388954524" target="_blank" class="btn-copy">Enviar</a>
+                        </div>
+                       
+                    </div>
+                </div>
 
                 <a href="mailto:cesarsantana.psc@gmail.com" class="link-item">
                     <i class="fa-solid fa-envelope"></i>
@@ -430,7 +421,7 @@
 
                 <a href="https://drive.google.com/file/d/1f0coCikoSMsY8zljzeOSw06XUVwroXHd/view?usp=drive_link" target="_blank" class="link-item">
                     <i class="fa-solid fa-book"></i>
-                    <span class="label">Livro "Osvaldo Pereira: Poesias"</span>
+                    <span class="label">Livro "Poesias" de Osvaldo Pereira</span>
                     <i class="fa-solid fa-chevron-right arrow"></i>
                 </a>
 
@@ -465,8 +456,8 @@
                             </div>
                             <a href="https://cesarsant85.github.io/flow-mental-maps/" target="_blank" class="btn-copy">Acessar</a>
                         </div>
-                        
-                        <!-- Projeto 3 - Flow minimal -->
+						
+						<!-- Projeto 3 - Flow minimal -->
                         <div class="pix-card">
                             <div class="pix-bank-info">
                                 <i class="fa-solid fa-code bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
@@ -534,6 +525,15 @@
     </div>
 
     <script>
+        // Toggle para Abrir/Fechar a caixa de Contato / WhatsApp
+        const contactBtn = document.getElementById('contactBtn');
+        const contactBox = document.getElementById('contactBox');
+
+        contactBtn.addEventListener('click', function() {
+            contactBtn.classList.toggle('open');
+            contactBox.classList.toggle('show');
+        });
+
         // Toggle para Abrir/Fechar a caixa de Meus Projetos
         const projectsBtn = document.getElementById('projectsBtn');
         const projectsBox = document.getElementById('projectsBox');
