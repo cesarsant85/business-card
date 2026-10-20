@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #082f49 0%, #0c4a6e 35%, #064e3b 70%, #1e1b4b 100%);
+            --bg-gradient: linear-gradient(135deg, #082f49 0%, #0c4a6e 50%, #0369a1 100%);
             --card-bg: rgba(15, 23, 42, 0.55);
             --card-border: rgba(56, 189, 248, 0.2);
             --text-primary: #f8fafc;
@@ -33,7 +33,8 @@
             transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
         }
 
-        @keyframes darkRgbBackground {
+        /* Animação de Efeito RGB com Tons Escuros */
+        @keyframes darkRgbFlow {
             0% {
                 background-position: 0% 50%;
             }
@@ -46,9 +47,9 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            background-size: 300% 300%;
-            animation: darkRgbBackground 18s ease infinite;
+            background: linear-gradient(135deg, #030712, #082f49, #090d16, #0c4a6e, #0369a1, #0f172a);
+            background-size: 400% 400%;
+            animation: darkRgbFlow 15s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -127,7 +128,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--avatar-border);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Informações Pessoais */
@@ -168,7 +169,7 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             width: 100%;
@@ -287,7 +288,7 @@
 
         .pix-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .pix-bank-info {
@@ -352,27 +353,16 @@
             color: var(--text-secondary);
             opacity: 0.8;
             animation: fadeInDown 0.6s ease 0.8s both;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: center;
+            line-height: 1.5;
         }
 
         .visitor-counter {
+            margin-top: 6px;
             font-size: 0.7rem;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 4px 10px;
-            border-radius: 20px;
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            color: var(--text-secondary);
-        }
-
-        .visitor-counter i {
-            color: var(--icon-color);
-            font-size: 0.75rem;
+            opacity: 0.75;
         }
 
         @media (max-width: 480px) {
@@ -395,8 +385,8 @@
             </div>
 
             <!-- Dados -->
-            <h1 class="name">César Santana[cite: 1]</h1>
-            <p class="role">Servidor público / Psicólogo[cite: 1]</p>
+            <h1 class="name">César Santana</h1>
+            <p class="role">Servidor público / Psicólogo</p>
 
             <!-- Links -->
             <div class="links-list">
@@ -426,7 +416,7 @@
 
                 <a href="https://drive.google.com/file/d/1f0coCikoSMsY8zljzeOSw06XUVwroXHd/view?usp=drive_link" target="_blank" class="link-item">
                     <i class="fa-solid fa-book"></i>
-                    <span class="label">Livro "Poesias" de Osvaldo Pereira[cite: 1]</span>
+                    <span class="label">Livro "Poesias" de Osvaldo Pereira</span>
                     <i class="fa-solid fa-chevron-right arrow"></i>
                 </a>
 
@@ -439,12 +429,13 @@
                     </button>
 
                     <div class="projects-box" id="projectsBox">
+                        
                         <!-- Projeto 1 - InfoCRAS -->
                         <div class="pix-card">
                             <div class="pix-bank-info">
                                 <i class="fa-solid fa-code bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
                                 <div class="pix-details">
-                                    <span class="pix-bank-name">InfoCRAS[cite: 1]</span>
+                                    <span class="pix-bank-name">InfoCRAS</span>
                                 </div>
                             </div>
                             <a href="https://cesarsant85.github.io/infocras/" target="_blank" class="btn-copy">Acessar</a>
@@ -455,7 +446,7 @@
                             <div class="pix-bank-info">
                                 <i class="fa-solid fa-code bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
                                 <div class="pix-details">
-                                    <span class="pix-bank-name">Flow - Mapas mentais[cite: 1]</span>
+                                    <span class="pix-bank-name">Flow - Mapas mentais</span>
                                 </div>
                             </div>
                             <a href="https://cesarsant85.github.io/flow-mental-maps/" target="_blank" class="btn-copy">Acessar</a>
@@ -466,11 +457,12 @@
                             <div class="pix-bank-info">
                                 <i class="fa-solid fa-code bank-icon" style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--icon-color);"></i>
                                 <div class="pix-details">
-                                    <span class="pix-bank-name">Flow Minimal[cite: 1]</span>
+                                    <span class="pix-bank-name">Flow Minimal</span>
                                 </div>
                             </div>
                             <a href="https://cesarsant85.github.io/flow-minimal" target="_blank" class="btn-copy">Acessar</a>
                         </div>
+
                     </div>
                 </div>
 
@@ -483,15 +475,16 @@
                     </button>
 
                     <div class="pix-box" id="pixBox">
+                        
                         <!-- Opção 1: Caixa -->
                         <div class="pix-card">
                             <div class="pix-bank-info">
                                 <img src="images/caixa.png" alt="Caixa" class="bank-icon">
                                 <div class="pix-details">
-                                    <span class="pix-bank-name">Caixa[cite: 1]</span>
+                                    <span class="pix-bank-name">Caixa</span>
                                 </div>
                             </div>
-                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_CAIXA_AQUI', this)">Copiar[cite: 1]</button>
+                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_CAIXA_AQUI', this)">Copiar</button>
                         </div>
 
                         <!-- Opção 2: Banco do Brasil -->
@@ -499,10 +492,10 @@
                             <div class="pix-bank-info">
                                 <img src="images/bb.png" alt="Banco do Brasil" class="bank-icon">
                                 <div class="pix-details">
-                                    <span class="pix-bank-name">Banco do Brasil[cite: 1]</span>
+                                    <span class="pix-bank-name">Banco do Brasil</span>
                                 </div>
                             </div>
-                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_BB_AQUI', this)">Copiar[cite: 1]</button>
+                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_BB_AQUI', this)">Copiar</button>
                         </div>
 
                         <!-- Opção 3: BTG -->
@@ -510,28 +503,27 @@
                             <div class="pix-bank-info">
                                 <img src="images/btg.png" alt="BTG" class="bank-icon">
                                 <div class="pix-details">
-                                    <span class="pix-bank-name">BTG[cite: 1]</span>
+                                    <span class="pix-bank-name">BTG</span>
                                 </div>
                             </div>
-                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_BTG_AQUI', this)">Copiar[cite: 1]</button>
+                            <button type="button" class="btn-copy" onclick="copyKey('SUA_CHAVE_BTG_AQUI', this)">Copiar</button>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <!-- Rodapé com Contador de Visualizações via API -->
             <div class="footer">
-                <div class="visitor-counter">
-                    <i class="fa-solid fa-eye"></i>
-                    <span>Visualizações: <strong id="visitorCount">...</strong></span>
-                </div>
-               Desenvolvido por CS Solutions &copy; 2026[cite: 1]
+               Desenvolvido por CS Solutions &copy; 2026<br>
+               <div class="visitor-counter">
+                   <i class="fa-solid fa-eye"></i> Visualizações: <span id="visitorCount">Carregando...</span>
+               </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Toggle para Abrir/Fechar a caixa de Meus Projetos[cite: 1]
+        // Toggle para Abrir/Fechar a caixa de Meus Projetos
         const projectsBtn = document.getElementById('projectsBtn');
         const projectsBox = document.getElementById('projectsBox');
 
@@ -540,7 +532,7 @@
             projectsBox.classList.toggle('show');
         });
 
-        // Toggle para Abrir/Fechar a caixa do PIX[cite: 1]
+        // Toggle para Abrir/Fechar a caixa do PIX
         const pixBtn = document.getElementById('pixBtn');
         const pixBox = document.getElementById('pixBox');
 
@@ -549,7 +541,7 @@
             pixBox.classList.toggle('show');
         });
 
-        // Copiar Chave PIX[cite: 1]
+        // Copiar Chave PIX
         function copyKey(keyText, button) {
             navigator.clipboard.writeText(keyText).then(() => {
                 const originalText = button.innerText;
@@ -563,15 +555,20 @@
             });
         }
 
-        // API de Contador de Visualizações (CountAPI)
-        fetch('https://api.countapi.xyz/hit/cesarsant85-business-card/visits')
+        // Contador de Visualizações via API Pública (CounterAPI)
+        fetch('https://api.counterapi.dev/v1/cesarsant85/business-card/up')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('visitorCount').innerText = data.value.toLocaleString('pt-BR');
+                const countElement = document.getElementById('visitorCount');
+                if (countElement && data && typeof data.count !== 'undefined') {
+                    countElement.textContent = data.count.toLocaleString('pt-BR');
+                } else {
+                    countElement.textContent = 'Indisponível';
+                }
             })
-            .catch(error => {
-                console.error('Erro ao carregar o contador de visitas:', error);
-                document.getElementById('visitorCount').innerText = '1.200+'; // Fallback estético caso a API esteja indisponível
+            .catch(() => {
+                const countElement = document.getElementById('visitorCount');
+                if (countElement) countElement.textContent = 'Indisponível';
             });
     </script>
 </body>
